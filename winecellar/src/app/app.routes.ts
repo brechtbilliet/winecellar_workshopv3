@@ -6,10 +6,10 @@ import { AboutPageContainer } from '../about/containers/about/about-page.contain
 
 const routes = [
   { path: '', redirectTo: '/stock', pathMatch: 'full' },
-  {path: 'about', component: AboutPageContainer},
-  {path: 'stock', component: StockPageContainer},
-  {path: 'stock/add', component: AddStockPageContainer},
-  {path: 'stock/:id', component: EditStockPageContainer},
+  { path: 'about', component: AboutPageContainer },
+  { path: 'stock', component: StockPageContainer },
+  { path: 'stock/add', component: AddStockPageContainer },
+  { path: 'stock/:id', component: EditStockPageContainer },
 ];
 
 export const appRoutes = RouterModule.forRoot(routes);
