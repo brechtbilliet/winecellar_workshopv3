@@ -1,16 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-root',
+  encapsulation: ViewEncapsulation.None,
   template: `
-    <h1>Hello world</h1>
-    <ul>
-      <li><a routerLink="about">About</a></li>
-      <li><a routerLink="stock">stock</a></li>
-      <li><a routerLink="stock/add">Add</a></li>
-      <li><a routerLink="stock/fake">Edit</a></li>
-    </ul>
+    <app-navbar></app-navbar>
     <router-outlet></router-outlet>
+    <app-spinner></app-spinner>
   `,
   styleUrls: ['./app.component.less']
 })
