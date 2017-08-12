@@ -31,6 +31,6 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ]
 })
-export class CommonModule {
+export class CommonLogicModule {
 
 }

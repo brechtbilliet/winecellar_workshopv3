@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { AboutPageContainer } from './containers/about/about-page.container';
-import { CommonModule } from '../common/common.module';
+import { CommonLogicModule } from '../common/common-logic.module';
 
 @NgModule({
   declarations: [
     AboutPageContainer
   ],
-  imports: [CommonModule],
+  imports: [CommonLogicModule],
   exports: [AboutPageContainer]
 })
 export class AboutModule {
