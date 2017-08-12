@@ -4,10 +4,13 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <h1>Hello world</h1>
-    <app-add-stock-page></app-add-stock-page>
-    <app-edit-stock-page></app-edit-stock-page>
-    <app-stock-page></app-stock-page>
-    <app-about-page></app-about-page>
+    <ul>
+      <li><a routerLink="about">About</a></li>
+      <li><a routerLink="stock">stock</a></li>
+      <li><a routerLink="stock/add">Add</a></li>
+      <li><a routerLink="stock/fake">Edit</a></li>
+    </ul>
+    <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.component.less']
 })
