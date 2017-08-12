@@ -6,7 +6,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   template: `
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>
-    <app-spinner></app-spinner>
+    <app-spinner [spin]="true"></app-spinner>
   `,
   styleUrls: ['./app.component.less']
 })

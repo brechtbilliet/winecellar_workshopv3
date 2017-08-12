@@ -29,10 +29,9 @@ import { StockService } from '../../services/stock.service';
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <app-panel>
-              <app-number-picker></app-number-picker>
-              <app-rating></app-rating>
-              <app-spinner></app-spinner>
+            <app-panel [header]="'Hi there'">
+              <app-number-picker [amount]="amount" (setAmount)="onSetAmount($event)"></app-number-picker>
+              <app-rating [rating]="rating" [big]="true" (setRate)="onSetRate($event)"></app-rating>
             </app-panel>
           </div>
         </div>
@@ -43,5 +42,16 @@ import { StockService } from '../../services/stock.service';
 export class StockPageContainer {
   constructor(private stockService: StockService) {
     this.stockService.foo();
+  }
+
+  amount = 5;
+  rating = 3;
+
+  onSetAmount(amount: number): void {
+    this.amount = amount;
+  }
+
+  onSetRate(rating: number): void {
+    this.rating = rating;
   }
 }
