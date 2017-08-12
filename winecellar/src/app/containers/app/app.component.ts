@@ -1,4 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { WinecellarState } from '../../../statemanagement/state';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +13,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'app';
+  constructor(private store: Store<WinecellarState>) {
+
+  }
 }
