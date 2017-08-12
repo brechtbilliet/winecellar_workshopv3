@@ -5,7 +5,7 @@ import { AppComponent } from './containers/app/app.component';
 import { StockModule } from '../stock/stock.module';
 import { AboutModule } from '../about/about.module';
 import { appRoutes } from './app.routes';
-import { CommonModule } from '../common/common.module';
+import { CommonLogicModule } from '../common/common.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { CommonModule } from '../common/common.module';
     BrowserModule,
     StockModule,
     AboutModule,
-    CommonModule,
+    CommonLogicModule,
     appRoutes
   ],
   providers: [],

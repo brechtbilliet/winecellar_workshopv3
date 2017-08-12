@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Account } from '../../../authentication/types/Account';
 
 @Component({
   selector: 'app-navbar',
@@ -26,14 +27,14 @@ import { Component } from '@angular/core';
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="navbar-text hidden-sm hidden-xs hidden-md">
-              Welcome Brecht Billiet
+              Welcome {{account?.firstName}} {{account?.lastName}}
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                  aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="javascript: void(0)">
+                  <a href="javascript: void(0)" (click)="logoutClicked()">
                     <i class="fa fa-sign-out"></i>&nbsp;Logout
                   </a>
                 </li>
@@ -45,4 +46,10 @@ import { Component } from '@angular/core';
     </nav>`
 })
 export class NavbarComponent {
+  @Input() account: Account;
+  @Output() logout = new EventEmitter();
+
+  logoutClicked(): void {
+    this.logout.emit(null);
+  }
 }
