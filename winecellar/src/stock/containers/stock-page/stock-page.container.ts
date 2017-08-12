@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StockService } from '../../services/stock.service';
 
 @Component({
   selector: 'app-stock-page',
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
   `
 })
 export class StockPageContainer {
-
+  constructor(private stockService: StockService) {
+    this.stockService.foo();
+  }
 }
