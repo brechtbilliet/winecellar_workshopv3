@@ -9,6 +9,7 @@ import { CommonLogicModule } from '../common-logic/common-logic.module';
 import { rootReducer } from '../statemanagement/root.reducer';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AuthenticationModule } from '../authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StockModule,
     AboutModule,
     CommonLogicModule,
+    AuthenticationModule,
     appRoutes
   ],
   providers: [],

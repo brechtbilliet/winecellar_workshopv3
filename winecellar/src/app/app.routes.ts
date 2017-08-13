@@ -3,6 +3,7 @@ import { AddStockPageContainer } from '../stock/containers/add-stock-page/add-st
 import { StockPageContainer } from '../stock/containers/stock-page/stock-page.container';
 import { EditStockPageContainer } from '../stock/containers/edit-stock-page/edit-stock-page.container';
 import { AboutPageContainer } from '../about/containers/about/about-page.container';
+import { AuthenticationContainer } from '../authentication/containers/authentication/authentication.container';
 
 const routes = [
   { path: '', redirectTo: '/stock', pathMatch: 'full' },
@@ -10,6 +11,7 @@ const routes = [
   { path: 'stock', component: StockPageContainer },
   { path: 'stock/add', component: AddStockPageContainer },
   { path: 'stock/:id', component: EditStockPageContainer },
+  { path: 'authentication', component: AuthenticationContainer }
 ];
 
 export const appRoutes = RouterModule.forRoot(routes);
