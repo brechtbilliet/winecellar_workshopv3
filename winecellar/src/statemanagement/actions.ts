@@ -3,14 +3,14 @@ import { Wine } from '../stock/types/Wine';
 
 // action types
 export const ActionTypes = {
-  DATA_AUTHENTICATION_SET_AUTHENTICATION: 'DATA_AUTHENTICATION_SET_AUTHENTICATION',
-  DATA_AUTHENTICATION_CLEAR_AUTHENTICATION: 'DATA_AUTHENTICATION_CLEAR_AUTHENTICATION',
-  DATA_WINES_ADD: 'DATA_WINES_ADD',
-  DATA_WINES_REMOVE: 'DATA_WINES_REMOVE',
-  DATA_WINES_UPDATE: 'DATA_WINES_UPDATE',
-  DATA_WINES_UPDATE_RATE: 'DATA_WINES_UPDATE_RATE',
-  DATA_WINES_UPDATE_STOCK: 'DATA_WINES_UPDATE_STOCK',
-  DATA_WINES_SET_ALL: 'DATA_WINES_SET_ALL',
+  AUTHENTICATION_SET_AUTHENTICATION: 'AUTHENTICATION_SET_AUTHENTICATION',
+  AUTHENTICATION_CLEAR_AUTHENTICATION: 'AUTHENTICATION_CLEAR_AUTHENTICATION',
+  WINES_ADD: 'WINES_ADD',
+  WINES_REMOVE: 'WINES_REMOVE',
+  WINES_UPDATE: 'WINES_UPDATE',
+  WINES_UPDATE_RATE: 'WINES_UPDATE_RATE',
+  WINES_UPDATE_STOCK: 'WINES_UPDATE_STOCK',
+  WINES_SET_ALL: 'WINES_SET_ALL',
   APPLICATION_ENABLE_BUSY_FLAG: 'APPLICATION_ENABLE_BUSY_FLAG',
   APPLICATION_DISABLE_BUSY_FLAG: 'APPLICATION_DISABLE_BUSY_FLAG',
   APPLICATION_TOGGLE_SIDEBAR: 'APPLICATION_TOGGLE_SIDEBAR'
@@ -18,7 +18,7 @@ export const ActionTypes = {
 
 // typesafe actions
 export class SetAuthenticationAction {
-  type = ActionTypes.DATA_AUTHENTICATION_SET_AUTHENTICATION;
+  type = ActionTypes.AUTHENTICATION_SET_AUTHENTICATION;
   payload: { authenticationResult: AuthenticationResult };
 
   constructor(authenticationResult: AuthenticationResult) {
@@ -27,11 +27,11 @@ export class SetAuthenticationAction {
 }
 
 export class ClearAuthenticationAction {
-  type = ActionTypes.DATA_AUTHENTICATION_CLEAR_AUTHENTICATION;
+  type = ActionTypes.AUTHENTICATION_CLEAR_AUTHENTICATION;
 }
 
 export class AddWineAction {
-  type = ActionTypes.DATA_WINES_ADD;
+  type = ActionTypes.WINES_ADD;
   payload: { wine: Wine };
 
   constructor(wine: Wine) {
@@ -40,7 +40,7 @@ export class AddWineAction {
 }
 
 export class RemoveWineAction {
-  type = ActionTypes.DATA_WINES_REMOVE;
+  type = ActionTypes.WINES_REMOVE;
   payload: { id: string };
 
   constructor(id: string) {
@@ -49,7 +49,7 @@ export class RemoveWineAction {
 }
 
 export class UpdateWineAction {
-  type = ActionTypes.DATA_WINES_UPDATE;
+  type = ActionTypes.WINES_UPDATE;
   payload: { id: string, wine: Wine };
 
   constructor(id: string, wine: Wine) {
@@ -58,7 +58,7 @@ export class UpdateWineAction {
 }
 
 export class UpdateRateWineAction {
-  type = ActionTypes.DATA_WINES_UPDATE_RATE;
+  type = ActionTypes.WINES_UPDATE_RATE;
   payload: { id: string, myRating: number };
 
   constructor(id: string, myRating: number) {
@@ -67,7 +67,7 @@ export class UpdateRateWineAction {
 }
 
 export class UpdateStockWineAction {
-  type = ActionTypes.DATA_WINES_UPDATE_STOCK;
+  type = ActionTypes.WINES_UPDATE_STOCK;
   payload: { id: string, inStock: number };
 
   constructor(id: string, inStock: number) {
@@ -76,7 +76,7 @@ export class UpdateStockWineAction {
 }
 
 export class SetAllWinesAction {
-  type = ActionTypes.DATA_WINES_SET_ALL;
+  type = ActionTypes.WINES_SET_ALL;
   payload: { wines: Array<Wine> };
 
   constructor(wines: Array<Wine>) {
