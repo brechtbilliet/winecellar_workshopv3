@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { CommonLogicModule } from '../common-logic/common-logic.module';
 import { HttpModule } from '@angular/http';
 import { AuthenticationService } from './services/authentication.service';
+import { AuthenticatedGuard } from './authenticated.guard';
 
 @NgModule({
   imports: [CommonModule, CommonLogicModule, HttpModule],
   declarations: [LoginComponent, RegisterComponent, AuthenticationContainer],
-  providers: [AuthenticationService]
+  providers: [AuthenticationService, AuthenticatedGuard]
 })
 export class AuthenticationModule {
 

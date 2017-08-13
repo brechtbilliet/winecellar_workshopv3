@@ -4,13 +4,14 @@ import { StockPageContainer } from '../stock/containers/stock-page/stock-page.co
 import { EditStockPageContainer } from '../stock/containers/edit-stock-page/edit-stock-page.container';
 import { AboutPageContainer } from '../about/containers/about/about-page.container';
 import { AuthenticationContainer } from '../authentication/containers/authentication/authentication.container';
+import { AuthenticatedGuard } from '../authentication/authenticated.guard';
 
 const routes = [
   { path: '', redirectTo: '/stock', pathMatch: 'full' },
-  { path: 'about', component: AboutPageContainer },
-  { path: 'stock', component: StockPageContainer },
-  { path: 'stock/add', component: AddStockPageContainer },
-  { path: 'stock/:id', component: EditStockPageContainer },
+  { path: 'about', component: AboutPageContainer, canActivate: [AuthenticatedGuard] },
+  { path: 'stock', component: StockPageContainer, canActivate: [AuthenticatedGuard] },
+  { path: 'stock/add', component: AddStockPageContainer, canActivate: [AuthenticatedGuard] },
+  { path: 'stock/:id', component: EditStockPageContainer, canActivate: [AuthenticatedGuard] },
   { path: 'authentication', component: AuthenticationContainer }
 ];
 
