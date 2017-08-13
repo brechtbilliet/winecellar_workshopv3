@@ -77,10 +77,10 @@ export class UpdateStockWineAction {
 
 export class SetAllWinesAction {
   type = ActionTypes.DATA_WINES_SET_ALL;
-  payload: { id: string, wines: Array<Wine> };
+  payload: { wines: Array<Wine> };
 
-  constructor(id: string, wines: Array<Wine>) {
-    this.payload = { id, wines };
+  constructor(wines: Array<Wine>) {
+    this.payload = { wines };
   }
 }
 
