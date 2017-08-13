@@ -6,10 +6,13 @@ import { API_URL, LOCALSTORAGE_AUTH } from '../../configuration';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import { WinecellarState } from '../../statemanagement/state';
+import { Store } from '@ngrx/store';
+import { ClearAuthenticationAction, SetAuthenticationAction } from '../../statemanagement/actions';
 
 @Injectable()
 export class AuthenticationService {
-  constructor(private http: Http) {
+  constructor(private http: Http, private store: Store<WinecellarState>) {
 
   }
 
@@ -19,6 +22,7 @@ export class AuthenticationService {
       .map(resp => resp.json())
       .do((result: AuthenticationResult) => {
         window.localStorage.setItem(LOCALSTORAGE_AUTH, JSON.stringify(result));
+        this.store.dispatch(new SetAuthenticationAction(result));
       });
   }
 
@@ -28,10 +32,12 @@ export class AuthenticationService {
       .map(resp => resp.json())
       .do((result: AuthenticationResult) => {
         window.localStorage.setItem(LOCALSTORAGE_AUTH, JSON.stringify(result));
+        this.store.dispatch(new SetAuthenticationAction(result));
       });
   }
 
   logout(): void {
     localStorage.removeItem(LOCALSTORAGE_AUTH);
+    this.store.dispatch(new ClearAuthenticationAction());
   }
 }
