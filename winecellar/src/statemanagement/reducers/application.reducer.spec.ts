@@ -1,6 +1,6 @@
 import { applicationReducer } from './application.reducer';
 import { ApplicationState } from '../state';
-import { ActionTypes as actions } from '../actions';
+import { DisableBusyFlagAction, EnableBusyFlagAction, ToggleSidebarAction } from '../actions';
 
 const deepfreeze = require('deep-freeze');
 
@@ -12,7 +12,7 @@ describe('reducer: containers > applicationReducer', () => {
         sidebarCollapsed: false
       };
       deepfreeze(initialState);
-      const changedState: ApplicationState = applicationReducer(initialState, { type: actions.APPLICATION_ENABLE_BUSY_FLAG });
+      const changedState = applicationReducer(initialState, new EnableBusyFlagAction());
       expect(initialState).not.toBe(changedState);
       expect(changedState.isBusy).toBe(true);
     });
@@ -24,7 +24,7 @@ describe('reducer: containers > applicationReducer', () => {
         sidebarCollapsed: false
       };
       deepfreeze(initialState);
-      const changedState: ApplicationState = applicationReducer(initialState, { type: actions.APPLICATION_DISABLE_BUSY_FLAG });
+      const changedState = applicationReducer(initialState, new DisableBusyFlagAction());
       expect(initialState).not.toBe(changedState);
       expect(changedState.isBusy).toBe(false);
     });
@@ -36,11 +36,10 @@ describe('reducer: containers > applicationReducer', () => {
         sidebarCollapsed: false
       };
       deepfreeze(initialState);
-      let changedState: ApplicationState =
-        applicationReducer(initialState, { type: actions.APPLICATION_TOGGLE_SIDEBAR });
+      let changedState = applicationReducer(initialState, new ToggleSidebarAction());
       expect(changedState).not.toBe(initialState);
       expect(changedState.sidebarCollapsed).toBe(true);
-      changedState = applicationReducer(initialState, { type: actions.APPLICATION_TOGGLE_SIDEBAR });
+      changedState = applicationReducer(changedState, new ToggleSidebarAction());
       expect(changedState.sidebarCollapsed).toBe(false);
 
     });

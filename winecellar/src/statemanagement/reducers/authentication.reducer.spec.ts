@@ -1,6 +1,7 @@
 import { AuthenticationState } from '../state';
 import { authenticationReducer } from './authentication.reducer';
-import { ActionTypes as actions } from '../actions';
+import { ClearAuthenticationAction, SetAuthenticationAction } from '../actions';
+import { AuthenticationResult } from '../../authentication/types/AuthenticationResult';
 
 const deepfreeze = require('deep-freeze');
 
@@ -12,15 +13,19 @@ describe('reducer: data > authenticationReducer', () => {
         jwtToken: '',
         account: null
       };
-      const payload: any = { token: 'token', firstName: 'firstname', lastName: 'lastname', login: 'login' };
+      const authenticationResult: AuthenticationResult = {
+        token: 'token',
+        firstName: 'firstname',
+        lastName: 'lastname',
+        login: 'login'
+      };
       deepfreeze(initialState);
-      const changedState: AuthenticationState =
-        authenticationReducer(initialState, { type: actions.DATA_AUTHENTICATION_SET_AUTHENTICATION, payload });
+      const changedState = authenticationReducer(initialState, new SetAuthenticationAction(authenticationResult));
       expect(changedState).not.toBe(initialState);
-      expect(changedState.jwtToken).toEqual(payload.token);
-      expect(changedState.account.firstName).toEqual(payload.firstName);
-      expect(changedState.account.lastName).toEqual(payload.lastName);
-      expect(changedState.account.login).toEqual(payload.login);
+      expect(changedState.jwtToken).toEqual(authenticationResult.token);
+      expect(changedState.account.firstName).toEqual(authenticationResult.firstName);
+      expect(changedState.account.lastName).toEqual(authenticationResult.lastName);
+      expect(changedState.account.login).toEqual(authenticationResult.login);
     });
   });
   describe('case DATA_AUTHENTICATION_CLEAR_AUTHENTICATION', () => {
@@ -35,8 +40,7 @@ describe('reducer: data > authenticationReducer', () => {
         }
       };
       deepfreeze(initialState);
-      const changedState: AuthenticationState =
-        authenticationReducer(initialState, { type: actions.DATA_AUTHENTICATION_CLEAR_AUTHENTICATION });
+      const changedState: AuthenticationState = authenticationReducer(initialState, new ClearAuthenticationAction());
       expect(changedState).not.toBe(initialState);
       expect(changedState.isAuthenticated).toBe(false);
     });
