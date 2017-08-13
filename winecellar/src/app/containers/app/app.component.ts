@@ -16,6 +16,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor(private router: Router, private authenticationService: AuthenticationService, private store: Store<WinecellarState>) {
+    this.store.subscribe((state) => {
+      console.log(state);
+    });
   }
 
   onLogout(): void {
