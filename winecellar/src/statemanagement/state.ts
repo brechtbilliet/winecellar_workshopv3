@@ -2,9 +2,9 @@ import { Wine } from '../stock/types/Wine';
 import { Account } from '../authentication/types/Account';
 
 export interface WinecellarState {
+  readonly application: ApplicationState;
   readonly wines: Wine[];
   readonly authentication: AuthenticationState;
-  readonly application: ApplicationState;
 }
 
 export interface ApplicationState {
