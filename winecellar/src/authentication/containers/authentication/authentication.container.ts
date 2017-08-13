@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Credentials } from '../../types/Credentials';
+import { AuthenticationService } from '../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -17,15 +19,23 @@ import { Credentials } from '../../types/Credentials';
 export class AuthenticationContainer {
   curTab = 0;
 
+  constructor(private router: Router, private authenticationService: AuthenticationService) {
+
+  }
+
   enableTab(tabIndex: number): void {
     this.curTab = tabIndex;
   }
 
   login(credentials: Credentials): void {
-    console.log('login with: ', credentials);
+    this.authenticationService.authenticate(credentials).subscribe(() => {
+      this.router.navigate(['/']);
+    });
   }
 
   register(account: Account): void {
-    console.log('register with: ', account);
+    this.authenticationService.register(account).subscribe(() => {
+      this.router.navigate(['/']);
+    });
   }
 }
