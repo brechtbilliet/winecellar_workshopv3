@@ -1,4 +1,5 @@
 import { Wine } from '../stock/types/Wine';
+import { Account } from '../authentication/types/Account';
 
 export interface WinecellarState {
   application: ApplicationState;
