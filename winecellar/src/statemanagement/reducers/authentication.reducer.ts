@@ -7,7 +7,7 @@ export function authenticationReducer(state: AuthenticationState = {
   jwtToken: null
 }, action: WinecellarActions): AuthenticationState {
   switch (action.type) {
-    case ActionTypes.DATA_AUTHENTICATION_SET_AUTHENTICATION:
+    case ActionTypes.AUTHENTICATION_SET_AUTHENTICATION:
       const authenticationResult = action.payload.authenticationResult;
       return {
         isAuthenticated: true,
@@ -18,7 +18,7 @@ export function authenticationReducer(state: AuthenticationState = {
           login: authenticationResult.login
         }
       };
-    case ActionTypes.DATA_AUTHENTICATION_CLEAR_AUTHENTICATION:
+    case ActionTypes.AUTHENTICATION_CLEAR_AUTHENTICATION:
       return {
         isAuthenticated: false,
         jwtToken: null,
