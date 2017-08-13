@@ -2,20 +2,20 @@ import { Wine } from '../stock/types/Wine';
 import { Account } from '../authentication/types/Account';
 
 export interface WinecellarState {
-  application: ApplicationState;
-  data: {
-    wines: Wine[],
-    authentication: AuthenticationState
+  readonly application: ApplicationState;
+  readonly data: {
+    readonly wines: Wine[],
+    readonly authentication: AuthenticationState
   };
 }
 
 export interface ApplicationState {
-  sidebarCollapsed: boolean;
-  isBusy: boolean;
+  readonly sidebarCollapsed: boolean;
+  readonly isBusy: boolean;
 }
 
 export interface AuthenticationState {
-  isAuthenticated: boolean;
-  jwtToken: string;
-  account: Account;
+  readonly isAuthenticated: boolean;
+  readonly jwtToken: string;
+  readonly account: Account;
 }
