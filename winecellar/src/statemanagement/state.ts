@@ -3,10 +3,8 @@ import { Account } from '../authentication/types/Account';
 
 export interface WinecellarState {
   readonly application: ApplicationState;
-  readonly data: {
-    readonly wines: Wine[],
-    readonly authentication: AuthenticationState
-  };
+  readonly wines: Wine[];
+  readonly authentication: AuthenticationState;
 }
 
 export interface ApplicationState {
