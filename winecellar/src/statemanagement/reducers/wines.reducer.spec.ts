@@ -11,8 +11,8 @@ import {
 
 const deepfreeze = require('deep-freeze');
 
-describe('reducer > data', () => {
-  describe('case DATA_WINES_ADD', () => {
+describe('reducer wines', () => {
+  describe('case WINES_ADD', () => {
     it('should return a new instance with the correct state', () => {
       const initialState: Array<Wine> = [new Wine('initial', 'wine')];
       deepfreeze(initialState);
@@ -23,7 +23,7 @@ describe('reducer > data', () => {
       expect(changedState[1]).toBe(wine);
     });
   });
-  describe('case DATA_WINES_SET_ALL', () => {
+  describe('case WINES_SET_ALL', () => {
     it('should return a new instance with the correct state', () => {
       const initialState: Array<Wine> = [];
       const wines = [new Wine(), new Wine(), new Wine()];
@@ -35,7 +35,7 @@ describe('reducer > data', () => {
       });
     });
   });
-  describe('case DATA_WINES_REMOVE', () => {
+  describe('case WINES_REMOVE', () => {
     it('should return a new instance with the correct state', () => {
       const initialState: Array<Wine> = [
         { ...new Wine(), _id: 'fakeid1' },
@@ -49,7 +49,7 @@ describe('reducer > data', () => {
       expect(changedState.filter((wine: Wine) => wine._id === idToRemove).length).toBe(0);
     });
   });
-  describe('case DATA_WINES_UPDATE', () => {
+  describe('case WINES_UPDATE', () => {
     it('should return a new instance with the correct state', () => {
       const initialState: Array<Wine> = [
         { ...new Wine(), _id: 'fakeid1' },
@@ -65,7 +65,7 @@ describe('reducer > data', () => {
       expect(changedState[0]).toEqual(updatedWine);
     });
   });
-  describe('case DATA_WINES_UPDATE_RATE', () => {
+  describe('case WINES_UPDATE_RATE', () => {
     it('should return a new instance with the correct state', () => {
       const initialState: Array<Wine> = [
         { ...new Wine(), _id: 'fakeid1' },
@@ -81,7 +81,7 @@ describe('reducer > data', () => {
       expect(changedState[0].myRating).toBe(newRating);
     });
   });
-  describe('case DATA_WINES_UPDATE_STOCK', () => {
+  describe('case WINES_UPDATE_STOCK', () => {
     it('should return a new instance with the correct state', () => {
       const initialState: Array<Wine> = [
         { ...new Wine(), _id: 'fakeid1' },

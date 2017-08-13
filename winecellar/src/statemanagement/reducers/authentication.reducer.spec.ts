@@ -5,8 +5,8 @@ import { AuthenticationResult } from '../../authentication/types/AuthenticationR
 
 const deepfreeze = require('deep-freeze');
 
-describe('reducer: data > authenticationReducer', () => {
-  describe('case DATA_AUTHENTICATION_SET_AUTHENTICATION', () => {
+describe('reducer: authenticationReducer', () => {
+  describe('case AUTHENTICATION_SET_AUTHENTICATION', () => {
     it('should return a new instance with the correct state', () => {
       const initialState: AuthenticationState = {
         isAuthenticated: false,
@@ -28,7 +28,7 @@ describe('reducer: data > authenticationReducer', () => {
       expect(changedState.account.login).toEqual(authenticationResult.login);
     });
   });
-  describe('case DATA_AUTHENTICATION_CLEAR_AUTHENTICATION', () => {
+  describe('case AUTHENTICATION_CLEAR_AUTHENTICATION', () => {
     it('should return a new instance with the state cleared', () => {
       const initialState: AuthenticationState = {
         isAuthenticated: true,

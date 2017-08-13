@@ -40,4 +40,11 @@ export class AuthenticationService {
     localStorage.removeItem(LOCALSTORAGE_AUTH);
     this.store.dispatch(new ClearAuthenticationAction());
   }
+
+  checkInitialAuthentication(): void {
+    const localStorageObj = window.localStorage.getItem(LOCALSTORAGE_AUTH);
+    if (localStorageObj) {
+      this.store.dispatch(new SetAuthenticationAction(JSON.parse(localStorageObj)));
+    }
+  }
 }
