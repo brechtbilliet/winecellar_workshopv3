@@ -1,10 +1,12 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { WinecellarState } from '../statemanagement/state';
+import { AuthenticationState, WinecellarState } from '../statemanagement/state';
 import { Store } from '@ngrx/store';
 import { DisableBusyFlagAction, EnableBusyFlagAction } from '../statemanagement/actions';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/finally';
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class WinecellarHttpInterceptor implements HttpInterceptor {
@@ -15,8 +17,17 @@ export class WinecellarHttpInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.httpCallRequested();
-    return next
-      .handle(request)
+    return this.store
+      .select(state => state.authentication) // fetch the authentication from the store as a stream
+      .take(1) // we don't want this stream to keep on living (take the current value)
+      .flatMap((authState: AuthenticationState) => {
+        const requestToHandle = authState.isAuthenticated
+          ? request.clone({
+            headers: request.headers.set('authorization', `Bearer ${authState.jwtToken}`)
+          })
+          : request;
+        return next.handle(requestToHandle);
+      })
       .finally(() => this.httpCallReady());
   }
 

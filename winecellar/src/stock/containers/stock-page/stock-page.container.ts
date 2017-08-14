@@ -42,10 +42,6 @@ import { StockService } from '../../services/stock.service';
   `
 })
 export class StockPageContainer {
-  constructor(private stockService: StockService) {
-    this.stockService.foo();
-  }
-
   amount = 5;
   rating = 3;
 
