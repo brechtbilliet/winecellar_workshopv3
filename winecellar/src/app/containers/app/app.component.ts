@@ -10,12 +10,13 @@ import { Router } from '@angular/router';
   template: `
     <app-navbar (logout)="onLogout()" *ngIf="authenticated$|async"></app-navbar>
     <router-outlet></router-outlet>
-    <app-spinner [spin]="true"></app-spinner>
+    <app-spinner [spin]="isBusy$|async"></app-spinner>
   `,
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
   authenticated$ = this.store.select(state => state.authentication.isAuthenticated);
+  isBusy$ = this.store.select(state => state.application.isBusy);
 
   constructor(private router: Router, private authenticationService: AuthenticationService, private store: Store<WinecellarState>) {
     this.authenticationService.checkInitialAuthentication();
