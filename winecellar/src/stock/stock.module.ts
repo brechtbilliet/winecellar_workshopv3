@@ -5,9 +5,9 @@ import { EditStockPageContainer } from './containers/edit-stock-page/edit-stock-
 import { StockService } from './services/stock.service';
 import { CommonLogicModule } from '../common-logic/common-logic.module';
 import { RouterModule } from '@angular/router';
-import { FavoriteWinesComponent } from './containers/components/favorite-wines/favorite-wines.component';
-import { WineResultComponent } from './containers/components/wine-result/wine-result.component';
-import { WineResultsComponent } from './containers/components/wine-results/wine-results.component';
+import { FavoriteWinesComponent } from './components/favorite-wines/favorite-wines.component';
+import { WineResultComponent } from './components/wine-result/wine-result.component';
+import { WineResultsComponent } from './components/wine-results/wine-results.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
