@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/empty';
 
 @Injectable()
 export class WinecellarHttpInterceptor implements HttpInterceptor {
@@ -27,6 +29,10 @@ export class WinecellarHttpInterceptor implements HttpInterceptor {
           })
           : request;
         return next.handle(requestToHandle);
+      })
+      .catch(() => {
+        alert('Something went terribly wrong!');
+        return Observable.empty();
       })
       .finally(() => this.httpCallReady());
   }
