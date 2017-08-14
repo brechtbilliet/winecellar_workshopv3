@@ -8,15 +8,15 @@ import { RouterModule } from '@angular/router';
 import { FavoriteWinesComponent } from './containers/components/favorite-wines/favorite-wines.component';
 import { WineResultComponent } from './containers/components/wine-result/wine-result.component';
 import { WineResultsComponent } from './containers/components/wine-results/wine-results.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     StockPageContainer, AddStockPageContainer, EditStockPageContainer,
     FavoriteWinesComponent, WineResultComponent, WineResultsComponent],
   exports: [StockPageContainer, AddStockPageContainer, EditStockPageContainer],
-  imports: [CommonLogicModule, RouterModule],
+  imports: [CommonModule, CommonLogicModule, RouterModule],
   providers: [StockService]
 })
 export class StockModule {
-
 }
