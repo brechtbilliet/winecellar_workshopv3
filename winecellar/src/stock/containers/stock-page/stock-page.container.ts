@@ -54,7 +54,7 @@ export class StockPageContainer {
   term$ = new BehaviorSubject('');
   wines$ = this.store.select(state => state.wines);
   favoriteWines$ = this.wines$.map(wines => _.orderBy(wines, ['myRating'], ['desc']));
-  numberOfWines$ = this.wines$.map(wines => wines.length);
+  numberOfWines$ = this.wines$.map(wines => _.sumBy(wines, (wine) => wine.inStock));
   filteredWines$ = this.term$.combineLatest(this.wines$,
     (term: string, wines: Wine[]) => {
       return wines.filter(wine => wine.name.toLowerCase().indexOf(term) > -1);

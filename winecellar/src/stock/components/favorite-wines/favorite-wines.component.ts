@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Wine } from '../../../types/Wine';
+import { Wine } from '../../types/Wine';
 
 @Component({
   selector: 'app-favorite-wines',
@@ -11,7 +11,7 @@ import { Wine } from '../../../types/Wine';
         <tbody>
         <tr *ngFor="let wine of wines">
           <td style="min-width:70px;">
-            <number-picker [amount]="wine.inStock" (setAmount)="onSetStock(wine, $event)"></number-picker>
+            <app-number-picker [amount]="wine.inStock" (setAmount)="onSetStock(wine, $event)"></app-number-picker>
           </td>
           <td style="max-width: 200px;">{{wine.name}}</td>
           <td>{{wine.myRating}}/5</td>
