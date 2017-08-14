@@ -8,6 +8,7 @@ import { MainComponent } from './components/main/main.component';
 import { DefaultPageComponent } from './components/default-page/default-page.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CollapsableSidebarContainer } from './containers/collapsable-sidebar/collapsable-sidebar.container';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CommonModule } from '@angular/common';
     NumberPickerComponent,
     PanelComponent,
     RatingComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    CollapsableSidebarContainer
   ],
   exports: [
     DefaultPageComponent,
@@ -26,7 +28,8 @@ import { CommonModule } from '@angular/common';
     NumberPickerComponent,
     PanelComponent,
     RatingComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    CollapsableSidebarContainer
   ],
   imports: [
     RouterModule,

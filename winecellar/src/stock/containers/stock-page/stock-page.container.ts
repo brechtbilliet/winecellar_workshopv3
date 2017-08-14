@@ -5,6 +5,10 @@ import { StockService } from '../../services/stock.service';
   selector: 'app-stock-page',
   template: `
     <app-default-page>
+      <app-collapsable-sidebar class="hidden-sm hidden-xs">
+        <app-favorite-wines>
+        </app-favorite-wines>
+      </app-collapsable-sidebar>
       <app-main>
         <div class="row">
           <div class="col-sm-8">

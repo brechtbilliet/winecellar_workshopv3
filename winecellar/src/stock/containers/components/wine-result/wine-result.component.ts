@@ -6,7 +6,7 @@ import { Wine } from '../../../types/Wine';
   template: `
     <td><img></td>
     <td>fake name</td>
-    <td>fake region}</td>
+    <td>fake region</td>
     <td style="min-width:80px;">
       <app-number-picker></app-number-picker>
     </td>
