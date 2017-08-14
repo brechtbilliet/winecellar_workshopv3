@@ -29,10 +29,8 @@ import { StockService } from '../../services/stock.service';
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <app-panel [header]="'Hi there'">
-              <app-number-picker [amount]="amount" (setAmount)="onSetAmount($event)"></app-number-picker>
-              <app-rating [rating]="rating" [big]="true" (setRate)="onSetRate($event)"></app-rating>
-            </app-panel>
+            <app-wine-results>
+            </app-wine-results>
           </div>
         </div>
       </app-main>
