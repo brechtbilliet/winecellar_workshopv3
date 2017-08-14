@@ -5,11 +5,12 @@ import { EditStockPageContainer } from './containers/edit-stock-page/edit-stock-
 import { StockService } from './services/stock.service';
 import { CommonLogicModule } from '../common-logic/common-logic.module';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [StockPageContainer, AddStockPageContainer, EditStockPageContainer],
   exports: [StockPageContainer, AddStockPageContainer, EditStockPageContainer],
-  imports: [CommonLogicModule, RouterModule],
+  imports: [CommonModule, CommonLogicModule, RouterModule],
   providers: [StockService]
 })
 export class StockModule {
