@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Wine } from '../../../types/Wine';
+import { Wine } from '../../types/Wine';
 
 @Component({
   selector: '[wineResult]',

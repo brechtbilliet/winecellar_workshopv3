@@ -57,15 +57,4 @@ export class StockPageContainer {
   constructor(private store: Store<WinecellarState>) {
 
   }
-
-  amount = 5;
-  rating = 3;
-
-  onSetAmount(amount: number): void {
-    this.amount = amount;
-  }
-
-  onSetRate(rating: number): void {
-    this.rating = rating;
-  }
 }
