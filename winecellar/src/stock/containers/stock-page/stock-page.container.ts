@@ -4,13 +4,15 @@ import { WinecellarState } from '../../../statemanagement/state';
 import { Store } from '@ngrx/store';
 import { Wine } from '../../types/Wine';
 import 'rxjs/add/operator/combineLatest';
+import { StockService } from '../../services/stock.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-stock-page',
   template: `
     <app-default-page>
       <app-collapsable-sidebar class="hidden-sm hidden-xs">
-        <app-favorite-wines>
+        <app-favorite-wines (setStock)="onSetStock($event)" [wines]="favoriteWines$ | async">
         </app-favorite-wines>
       </app-collapsable-sidebar>
       <app-main>
@@ -31,14 +33,16 @@ import 'rxjs/add/operator/combineLatest';
           <div class="col-sm-12">
             <h2>
               <i class="fa fa-user"></i>&nbsp;My wines
-              <span class="badge badge-primary">500</span>
+              <span class="badge badge-primary">{{numberOfWines$ | async}}</span>
             </h2>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <pre>{{filteredWines$|async|json}}</pre>
-            <app-wine-results>
+            <app-wine-results [wines]="filteredWines$|async"
+                              (remove)="onRemove($event)"
+                              (setRate)="onSetRate($event)"
+                              (setStock)="onSetStock($event)">
             </app-wine-results>
           </div>
         </div>
@@ -49,23 +53,26 @@ import 'rxjs/add/operator/combineLatest';
 export class StockPageContainer {
   term$ = new BehaviorSubject('');
   wines$ = this.store.select(state => state.wines);
+  favoriteWines$ = this.wines$.map(wines => _.orderBy(wines, ['myRating'], ['desc']));
+  numberOfWines$ = this.wines$.map(wines => wines.length);
   filteredWines$ = this.term$.combineLatest(this.wines$,
     (term: string, wines: Wine[]) => {
       return wines.filter(wine => wine.name.toLowerCase().indexOf(term) > -1);
     });
 
-  constructor(private store: Store<WinecellarState>) {
+  constructor(private store: Store<WinecellarState>, private stockService: StockService) {
 
   }
 
-  amount = 5;
-  rating = 3;
-
-  onSetAmount(amount: number): void {
-    this.amount = amount;
+  onRemove(wine: Wine): void {
+    this.stockService.remove(wine);
   }
 
-  onSetRate(rating: number): void {
-    this.rating = rating;
+  onSetRate(item: { wine: Wine, value: number }): void {
+    this.stockService.setRate(item.wine, item.value);
+  }
+
+  onSetStock(item: { wine: Wine, value: number }): void {
+    this.stockService.setStock(item.wine, item.value);
   }
 }
