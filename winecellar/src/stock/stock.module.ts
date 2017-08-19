@@ -10,14 +10,16 @@ import { WineResultComponent } from './components/wine-result/wine-result.compon
 import { WineResultsComponent } from './components/wine-results/wine-results.component';
 import { CommonModule } from '@angular/common';
 import { DetailWineFormComponent } from './components/detail-wine-form/detail-wine-form.component';
+import { WineComService } from './services/wine-com.service';
+import { WineSearchContainer } from './containers/wine-search/wine-search.container';
 
 @NgModule({
   declarations: [
     StockPageContainer, AddStockPageContainer, EditStockPageContainer,
-    FavoriteWinesComponent, WineResultComponent, WineResultsComponent, DetailWineFormComponent],
+    FavoriteWinesComponent, WineResultComponent, WineResultsComponent, DetailWineFormComponent, WineSearchContainer],
   exports: [StockPageContainer, AddStockPageContainer, EditStockPageContainer],
   imports: [CommonModule, CommonLogicModule, RouterModule],
-  providers: [StockService]
+  providers: [StockService, WineComService]
 })
 export class StockModule {
 }

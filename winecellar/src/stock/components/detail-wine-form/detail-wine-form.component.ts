@@ -7,8 +7,7 @@ import { Wine } from '../../types/Wine';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <form [formGroup]="wineForm" class="form-horizontal col-sm-12" (ngSubmit)="onSubmit()">
-      <app-form-group-textbox [label]="'Name'" [placeholder]="'Enter name'"
-                              [control]="wineForm.controls['name']"></app-form-group-textbox>
+      <app-wine-search [name]="wineForm.controls['name'].value"></app-wine-search>
       <app-form-group-textarea [label]="'Description'" [control]="wineForm.controls['description']"
                                [placeholder]="'Enter description'">
       </app-form-group-textarea>
