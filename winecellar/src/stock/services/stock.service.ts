@@ -28,7 +28,7 @@ export class StockService {
   update(_id: string, wine: Wine): void {
     this.httpClient
       .put(`${API_URL}/wines/${_id}`, wine)
-      .subscribe((resp: Wine) => this.store.dispatch(new UpdateWineAction(_id, resp)));
+      .subscribe((resp: Wine) => this.store.dispatch(new UpdateWineAction(_id, wine)));
   }
 
   remove(wine: Wine): void {
