@@ -45,7 +45,9 @@ import { FormGroupTextboxComponent } from './components/form/form-group-textbox/
     FormGroupFooterComponent,
     FormGroupPasswordComponent,
     FormGroupTextareaComponent,
-    FormGroupTextboxComponent
+    FormGroupTextboxComponent,
+    FormsModule,
+    ReactiveFormsModule
   ],
   imports: [
     RouterModule,
