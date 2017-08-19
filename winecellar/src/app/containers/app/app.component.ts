@@ -10,7 +10,7 @@ import { StockService } from '../../../stock/services/stock.service';
   selector: 'app-root',
   encapsulation: ViewEncapsulation.None,
   template: `
-    <app-navbar (logout)="onLogout()" *ngIf="authenticated$|async"></app-navbar>
+    <app-navbar (logout)="onLogout()" [account]="account$|async" *ngIf="authenticated$|async"></app-navbar>
     <router-outlet></router-outlet>
     <app-spinner [spin]="isBusy$|async"></app-spinner>
   `,
@@ -19,6 +19,7 @@ import { StockService } from '../../../stock/services/stock.service';
 export class AppComponent {
   authenticated$ = this.store.select(state => state.authentication.isAuthenticated);
   isBusy$ = this.store.select(state => state.application.isBusy);
+  account$ = this.store.select(state => state.authentication.account);
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
               private store: Store<WinecellarState>, private stockService: StockService) {
