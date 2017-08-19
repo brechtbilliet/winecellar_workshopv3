@@ -5,13 +5,21 @@ import { EditStockPageContainer } from './containers/edit-stock-page/edit-stock-
 import { StockService } from './services/stock.service';
 import { CommonLogicModule } from '../common-logic/common-logic.module';
 import { RouterModule } from '@angular/router';
+import { FavoriteWinesComponent } from './components/favorite-wines/favorite-wines.component';
+import { WineResultComponent } from './components/wine-result/wine-result.component';
+import { WineResultsComponent } from './components/wine-results/wine-results.component';
+import { CommonModule } from '@angular/common';
+import { DetailWineFormComponent } from './components/detail-wine-form/detail-wine-form.component';
+import { WineComService } from './services/wine-com.service';
+import { WineSearchContainer } from './containers/wine-search/wine-search.container';
 
 @NgModule({
-  declarations: [StockPageContainer, AddStockPageContainer, EditStockPageContainer],
+  declarations: [
+    StockPageContainer, AddStockPageContainer, EditStockPageContainer,
+    FavoriteWinesComponent, WineResultComponent, WineResultsComponent, DetailWineFormComponent, WineSearchContainer],
   exports: [StockPageContainer, AddStockPageContainer, EditStockPageContainer],
-  imports: [CommonLogicModule, RouterModule],
-  providers: [StockService]
+  imports: [CommonModule, CommonLogicModule, RouterModule],
+  providers: [StockService, WineComService]
 })
 export class StockModule {
-
 }

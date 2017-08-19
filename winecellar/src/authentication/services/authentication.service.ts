@@ -9,17 +9,17 @@ import 'rxjs/add/operator/do';
 import { WinecellarState } from '../../statemanagement/state';
 import { Store } from '@ngrx/store';
 import { ClearAuthenticationAction, SetAuthenticationAction } from '../../statemanagement/actions';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthenticationService {
-  constructor(private http: Http, private store: Store<WinecellarState>) {
+  constructor(private httpClient: HttpClient, private store: Store<WinecellarState>) {
 
   }
 
   authenticate(credentials: Credentials): Observable<AuthenticationResult> {
-    return this.http
+    return this.httpClient
       .post(`${API_URL}/authentication/login`, credentials)
-      .map(resp => resp.json())
       .do((result: AuthenticationResult) => {
         window.localStorage.setItem(LOCALSTORAGE_AUTH, JSON.stringify(result));
         this.store.dispatch(new SetAuthenticationAction(result));
@@ -27,9 +27,8 @@ export class AuthenticationService {
   }
 
   register(account: Account): Observable<AuthenticationResult> {
-    return this.http
+    return this.httpClient
       .post(`${API_URL}/authentication/register`, account)
-      .map(resp => resp.json())
       .do((result: AuthenticationResult) => {
         window.localStorage.setItem(LOCALSTORAGE_AUTH, JSON.stringify(result));
         this.store.dispatch(new SetAuthenticationAction(result));

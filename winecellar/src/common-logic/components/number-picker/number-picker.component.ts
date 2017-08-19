@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-number-picker',
   styleUrls: ['./number-picker.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <button type="button" class="btn btn-primary btn-sm" (click)="down()" [disabled]="amount === 0">
       <i class="fa fa-chevron-down"></i>

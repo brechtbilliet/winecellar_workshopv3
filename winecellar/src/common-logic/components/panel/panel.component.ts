@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-panel',
   styleUrls: ['./panel.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="panel panel-primary">
       <div class="panel-heading">

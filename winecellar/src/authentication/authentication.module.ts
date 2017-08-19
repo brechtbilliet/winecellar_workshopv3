@@ -7,9 +7,10 @@ import { CommonLogicModule } from '../common-logic/common-logic.module';
 import { HttpModule } from '@angular/http';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthenticatedGuard } from './authenticated.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports: [CommonModule, CommonLogicModule, HttpModule],
+  imports: [HttpClientModule, CommonModule, CommonLogicModule, HttpModule],
   declarations: [LoginComponent, RegisterComponent, AuthenticationContainer],
   providers: [AuthenticationService, AuthenticatedGuard]
 })

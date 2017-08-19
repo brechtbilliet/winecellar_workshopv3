@@ -10,6 +10,8 @@ import { rootReducer } from '../statemanagement/root.reducer';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthenticationModule } from '../authentication/authentication.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { WinecellarHttpInterceptor } from './winecellar-http.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { AuthenticationModule } from '../authentication/authentication.module';
     AuthenticationModule,
     appRoutes
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: WinecellarHttpInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
