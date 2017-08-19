@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Wine } from '../../types/Wine';
 
 @Component({
   selector: '[wineResult]',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <td><img src="{{wine.image}}"></td>
     <td>{{wine.name}}</td>

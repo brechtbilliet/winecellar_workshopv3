@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Account } from '../../../authentication/types/Account';
 
 @Component({
   selector: 'app-navbar',
   styleUrls: ['./navbar.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">

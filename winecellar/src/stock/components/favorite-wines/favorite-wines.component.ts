@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Wine } from '../../types/Wine';
 
 @Component({
   selector: 'app-favorite-wines',
   styleUrls: ['./favorite-wines.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div>
       <h2><i class="fa fa-star"></i>&nbsp;Favorites</h2>

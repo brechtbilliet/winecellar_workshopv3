@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./rating.component.less'],
   template: `
     <i class="fa fa-star rating" [class.fa-2x]="big"

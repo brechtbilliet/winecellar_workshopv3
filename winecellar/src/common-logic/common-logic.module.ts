@@ -9,6 +9,12 @@ import { DefaultPageComponent } from './components/default-page/default-page.com
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CollapsableSidebarContainer } from './containers/collapsable-sidebar/collapsable-sidebar.container';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroupContentComponent } from './components/form/form-group-content/form-group-content.component';
+import { FormGroupFooterComponent } from './components/form/form-group-footer/form-group-footer.component';
+import { FormGroupPasswordComponent } from './components/form/form-group-password/form-group-password.component';
+import { FormGroupTextareaComponent } from './components/form/form-group-textarea/form-group-textarea.component';
+import { FormGroupTextboxComponent } from './components/form/form-group-textbox/form-group-textbox.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +25,12 @@ import { CollapsableSidebarContainer } from './containers/collapsable-sidebar/co
     PanelComponent,
     RatingComponent,
     SpinnerComponent,
-    CollapsableSidebarContainer
+    CollapsableSidebarContainer,
+    FormGroupContentComponent,
+    FormGroupFooterComponent,
+    FormGroupPasswordComponent,
+    FormGroupTextareaComponent,
+    FormGroupTextboxComponent
   ],
   exports: [
     DefaultPageComponent,
@@ -29,11 +40,18 @@ import { CollapsableSidebarContainer } from './containers/collapsable-sidebar/co
     PanelComponent,
     RatingComponent,
     SpinnerComponent,
-    CollapsableSidebarContainer
+    CollapsableSidebarContainer,
+    FormGroupContentComponent,
+    FormGroupFooterComponent,
+    FormGroupPasswordComponent,
+    FormGroupTextareaComponent,
+    FormGroupTextboxComponent
   ],
   imports: [
     RouterModule,
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CommonLogicModule {
