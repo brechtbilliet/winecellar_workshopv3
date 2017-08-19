@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   selector: 'app-root',
   encapsulation: ViewEncapsulation.None,
   template: `
-    <app-navbar (logout)="onLogout()" *ngIf="authenticated"></app-navbar>
+    <app-navbar (logout)="onLogout()" [account]="account" *ngIf="authenticated"></app-navbar>
     <router-outlet></router-outlet>
     <app-spinner [spin]="true"></app-spinner>
   `,
@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnDestroy {
   authenticated = false;
+  account: Account;
 
   private subscriptions = [];
 
@@ -23,6 +24,7 @@ export class AppComponent implements OnDestroy {
     this.authenticationService.checkInitialAuthentication();
     this.subscriptions.push(this.store.subscribe((state) => {
       this.authenticated = state.authentication.isAuthenticated;
+      this.account = state.authentication.account;
     }));
   }
 
