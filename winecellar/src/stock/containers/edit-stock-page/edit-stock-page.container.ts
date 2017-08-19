@@ -4,9 +4,6 @@ import { WinecellarState } from '../../../statemanagement/state';
 import { StockService } from '../../services/stock.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Wine } from '../../types/Wine';
-import 'rxjs/add/operator/shareReplay';
-import 'rxjs/add/operator/share';
-import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/publishReplay';
 
 @Component({
