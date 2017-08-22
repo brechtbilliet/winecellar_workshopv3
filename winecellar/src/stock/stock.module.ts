@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { DetailWineFormComponent } from './components/detail-wine-form/detail-wine-form.component';
 import { WineComService } from './services/wine-com.service';
 import { WineSearchContainer } from './containers/wine-search/wine-search.container';
+import { StockSandbox } from './stock.sandbox';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { WineSearchContainer } from './containers/wine-search/wine-search.contai
     FavoriteWinesComponent, WineResultComponent, WineResultsComponent, DetailWineFormComponent, WineSearchContainer],
   exports: [StockPageContainer, AddStockPageContainer, EditStockPageContainer],
   imports: [CommonModule, CommonLogicModule, RouterModule],
-  providers: [StockService, WineComService]
+  providers: [StockService, WineComService, StockSandbox]
 })
 export class StockModule {
 }

@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { WinecellarState } from '../../../statemanagement/state';
-import { StockService } from '../../services/stock.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Wine } from '../../types/Wine';
 import 'rxjs/add/operator/shareReplay';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/publishReplay';
+import { StockSandbox } from '../../stock.sandbox';
 
 @Component({
   selector: 'app-edit-stock-page',
@@ -29,21 +27,20 @@ import 'rxjs/add/operator/publishReplay';
 export class EditStockPageContainer {
   id = this.route.snapshot.params['id'];
 
-  editWine$ = this.store.select(state => state.authentication.isAuthenticated)
+  editWine$ = this.sb.isAuthentiated$
     .filter(isAuthenticated => !!isAuthenticated) // only when authenticated
-    .flatMap(() => this.stockService.fetchWine(this.id))
+    .flatMap(() => this.sb.fetchWine(this.id))
     .filter(res => !!res)
     .publishReplay();
 
-  constructor(public store: Store<WinecellarState>,
-              private stockService: StockService,
+  constructor(private sb: StockSandbox,
               private route: ActivatedRoute,
               private router: Router) {
     this.editWine$.connect();
   }
 
   onSave(wine: Wine): void {
-    this.stockService.update(this.id, wine);
+    this.sb.updateWine(this.id, wine);
     this.router.navigate(['/stock']);
   }
 }

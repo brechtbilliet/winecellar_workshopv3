@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Credentials } from '../../types/Credentials';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
+import { AuthenticationSandbox } from '../../authentication.sandbox';
 
 @Component({
   selector: 'app-authentication',
@@ -19,7 +20,7 @@ import { Router } from '@angular/router';
 export class AuthenticationContainer {
   curTab = 0;
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) {
+  constructor(private router: Router, private sb: AuthenticationSandbox) {
 
   }
 
@@ -28,13 +29,13 @@ export class AuthenticationContainer {
   }
 
   login(credentials: Credentials): void {
-    this.authenticationService.authenticate(credentials).subscribe(() => {
+    this.sb.authenticate(credentials).subscribe(() => {
       this.router.navigate(['/']);
     });
   }
 
   register(account: Account): void {
-    this.authenticationService.register(account).subscribe(() => {
+    this.sb.register(account).subscribe(() => {
       this.router.navigate(['/']);
     });
   }

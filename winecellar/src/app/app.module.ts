@@ -12,6 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { WinecellarHttpInterceptor } from './winecellar-http.interceptor';
+import { AppSandbox } from './app.sandbox';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { WinecellarHttpInterceptor } from './winecellar-http.interceptor';
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: WinecellarHttpInterceptor, multi: true
-  }],
+  }, AppSandbox],
   bootstrap: [AppComponent]
 })
 export class AppModule {

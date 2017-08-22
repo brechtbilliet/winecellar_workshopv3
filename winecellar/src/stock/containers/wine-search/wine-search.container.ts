@@ -8,13 +8,18 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Product, WineComService } from '../../services/wine-com.service';
-import { Observable } from 'rxjs/Observable';
+import { Product, WineComSearchResult, WineComService } from '../../services/wine-com.service';
 import 'rxjs/add/observable/of';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/merge';
+import 'rxjs/add/operator/distinctUntilChanged';
+import { StockSandbox } from '../../stock.sandbox';
 
 @Component({
   selector: 'app-wine-search',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./wine-search.container.less'],
   template: `
     <div class="form-group has-feedback" [class.has-success]="control.valid">
       <label for="searchInput" class="col-sm-4 control-label">
@@ -38,9 +43,21 @@ export class WineSearchContainer implements OnChanges {
   @Output() selectWine = new EventEmitter<Product>();
   control = new FormControl('');
 
-  winesToShow$ = Observable.of([]);
+  private showResults$ = new BehaviorSubject(true);
 
-  constructor(private wineComService: WineComService) {
+  private clear$ = this.showResults$.filter(val => !val)
+    .map(() => []);
+
+  winesToShow$ = this.control.valueChanges
+    .do((value: string) => this.showResults$.next(false)) // user types, hide the results
+    .filter(value => value.length > 2)
+    .debounceTime(300)
+    .switchMap(value => this.sb.search(value))
+    .map((res: WineComSearchResult) => res.products.list)
+    .merge(this.clear$)
+    .distinctUntilChanged();
+
+  constructor(private sb: StockSandbox) {
   }
 
 
@@ -50,5 +67,6 @@ export class WineSearchContainer implements OnChanges {
 
   onSelectWine(wine: Product): void {
     this.selectWine.emit(wine);
+    this.showResults$.next(false);
   }
 }

@@ -1,10 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { WinecellarState } from '../../../statemanagement/state';
-import { AuthenticationService } from '../../../authentication/services/authentication.service';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
-import { StockService } from '../../../stock/services/stock.service';
+import { AppSandbox } from '../../app.sandbox';
 
 @Component({
   selector: 'app-root',
@@ -17,22 +14,21 @@ import { StockService } from '../../../stock/services/stock.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  authenticated$ = this.store.select(state => state.authentication.isAuthenticated);
-  isBusy$ = this.store.select(state => state.application.isBusy);
-  account$ = this.store.select(state => state.authentication.account);
+  authenticated$ = this.sb.authenticated$;
+  isBusy$ = this.sb.isBusy$;
+  account$ = this.sb.account$;
 
-  constructor(private router: Router, private authenticationService: AuthenticationService,
-              private store: Store<WinecellarState>, private stockService: StockService) {
-    this.authenticationService.checkInitialAuthentication();
+  constructor(private router: Router, private sb: AppSandbox) {
+    this.sb.checkInitialAuthentication();
     this.authenticated$
       .filter(item => item)
       .subscribe(() => {
-        this.stockService.fetchAll();
+        this.sb.fetchAll();
       });
   }
 
   onLogout(): void {
-    this.authenticationService.logout();
+    this.sb.logout();
     this.router.navigate(['/authentication']);
   }
 }
