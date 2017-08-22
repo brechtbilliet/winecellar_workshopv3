@@ -14,6 +14,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/distinctUntilChanged';
+import { StockSandbox } from '../../stock.sandbox';
 
 @Component({
   selector: 'app-wine-search',
@@ -51,12 +52,12 @@ export class WineSearchContainer implements OnChanges {
     .do((value: string) => this.showResults$.next(false)) // user types, hide the results
     .filter(value => value.length > 2)
     .debounceTime(300)
-    .switchMap(value => this.wineComService.search(value))
+    .switchMap(value => this.sb.search(value))
     .map((res: WineComSearchResult) => res.products.list)
     .merge(this.clear$)
     .distinctUntilChanged();
 
-  constructor(private wineComService: WineComService) {
+  constructor(private sb: StockSandbox) {
   }
 
 

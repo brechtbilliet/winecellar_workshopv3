@@ -8,11 +8,12 @@ import { HttpModule } from '@angular/http';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthenticatedGuard } from './authenticated.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationSandbox } from './authentication.sandbox';
 
 @NgModule({
   imports: [HttpClientModule, CommonModule, CommonLogicModule, HttpModule],
   declarations: [LoginComponent, RegisterComponent, AuthenticationContainer],
-  providers: [AuthenticationService, AuthenticatedGuard]
+  providers: [AuthenticationService, AuthenticatedGuard, AuthenticationSandbox]
 })
 export class AuthenticationModule {
 

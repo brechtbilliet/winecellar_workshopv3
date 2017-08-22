@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { WinecellarState } from '../../../statemanagement/state';
-import { Store } from '@ngrx/store';
 import { Wine } from '../../types/Wine';
 import 'rxjs/add/operator/combineLatest';
-import { StockService } from '../../services/stock.service';
 import * as _ from 'lodash';
+import { StockSandbox } from '../../stock.sandbox';
 
 @Component({
   selector: 'app-stock-page',
@@ -52,7 +50,7 @@ import * as _ from 'lodash';
 })
 export class StockPageContainer {
   term$ = new BehaviorSubject('');
-  wines$ = this.store.select(state => state.wines);
+  wines$ = this.sb.wines$;
   favoriteWines$ = this.wines$.map(wines => _.orderBy(wines, ['myRating'], ['desc']));
   numberOfWines$ = this.wines$.map(wines => _.sumBy(wines, (wine) => wine.inStock));
   filteredWines$ = this.term$.combineLatest(this.wines$,
@@ -60,19 +58,19 @@ export class StockPageContainer {
       return wines.filter(wine => wine.name.toLowerCase().indexOf(term) > -1);
     });
 
-  constructor(private store: Store<WinecellarState>, private stockService: StockService) {
+  constructor(private sb: StockSandbox) {
 
   }
 
   onRemove(wine: Wine): void {
-    this.stockService.remove(wine);
+    this.sb.removeWine(wine);
   }
 
   onSetRate(item: { wine: Wine, value: number }): void {
-    this.stockService.setRate(item.wine, item.value);
+    this.sb.setRate(item.wine, item.value);
   }
 
   onSetStock(item: { wine: Wine, value: number }): void {
-    this.stockService.setStock(item.wine, item.value);
+    this.sb.setStock(item.wine, item.value);
   }
 }
